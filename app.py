@@ -2697,25 +2697,7 @@ with st.sidebar:
     if st.session_state.get("mod_strategie"):
         st.info("🧠 **Strategie activ** — înveți să gândești, nu să copiezi.", icon="🗺️")
 
-    # --- Mod Pregătire BAC Intensivă ---
-    mod_bac_intensiv = st.toggle(
-        "🎓 Pregătire BAC Intensivă",
-        value=st.session_state.get("mod_bac_intensiv", False),
-        help="Focusat pe ce pică la BAC: tipare de subiecte, punctaj, timp, teorie lipsă detectată automat."
-    )
-    if mod_bac_intensiv != st.session_state.get("mod_bac_intensiv", False):
-        st.session_state.mod_bac_intensiv = mod_bac_intensiv
-        st.session_state.system_prompt = get_system_prompt(
-            st.session_state.get("materie_selectata"),
-            pas_cu_pas=st.session_state.get("pas_cu_pas", False),
-            desen_fizica=st.session_state.get("desen_fizica", True),
-            mod_strategie=st.session_state.get("mod_strategie", False),
-            mod_bac_intensiv=mod_bac_intensiv
-        )
-        st.toast("🎓 Mod BAC Intensiv activat!" if mod_bac_intensiv else "Mod normal activat.", icon="✅" if mod_bac_intensiv else "💬")
-        st.rerun()
-    if st.session_state.get("mod_bac_intensiv"):
-        st.info("🎓 **BAC Intensiv activ** — focusat pe ce pică la examen.", icon="📝")
+    mod_bac_intensiv = False  # Dezactivat pentru gimnaziu
 
     # --- Desen automat Fizică ---
     if st.session_state.get("materie_selectata") == "fizică" or not st.session_state.get("materie_selectata"):
